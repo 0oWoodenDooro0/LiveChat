@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="50dp"
+            android:text="Live"
+            android:textStyle="bold"
+            android:textColor="#00BBFF"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="50dp"
+            android:text="Chat"
+            android:textStyle="bold"
+            android:textColor="#EF9D45"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edittext_name"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="暱稱"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textSize="20dp"
+        android:hint="電子信箱"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/edittext_password"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:textSize="20dp"
+        android:hint="密碼"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="註冊"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
