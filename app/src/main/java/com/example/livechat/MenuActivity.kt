@@ -3,6 +3,7 @@ package com.example.livechat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -26,15 +27,13 @@ class MenuActivity : AppCompatActivity(){
             when(it.itemId){
                 R.id.page_friends ->{
                     supportFragmentManager.beginTransaction().replace(R.id.layout, FriendsFragment()).commit()
-                    return@setOnItemSelectedListener true
+                    true
                 }
                 R.id.page_profile ->{
                     supportFragmentManager.beginTransaction().replace(R.id.layout, ProfileFragment()).commit()
-                    return@setOnItemSelectedListener true
+                    true
                 }
-                else ->{
-                    return@setOnItemSelectedListener true
-                }
+                else -> false
             }
         }
         check()

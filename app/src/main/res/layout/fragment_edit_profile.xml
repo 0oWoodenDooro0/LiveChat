@@ -7,19 +7,14 @@
     tools:context=".EditProfileFragment"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/edit_profile_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="編輯個人檔案"
-            app:menu="@menu/toolbar"
-            android:background="@color/white"
-            app:navigationIcon="@drawable/ic_baseline_close_24" />
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="?attr/actionBarSize"
+        app:title="編輯個人檔案"
+        app:menu="@menu/toolbar"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_baseline_close_24" />
 
     <LinearLayout
         android:layout_width="match_parent"
