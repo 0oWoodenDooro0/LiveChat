@@ -7,6 +7,7 @@
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/drawable/ic_baseline_friends_24.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.17603748326639893" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout-w936dp/activity_login.xml" value="0.18681693989071038" />
+        <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/activity_edit_profile.xml" value="0.1765625" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/activity_login.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/activity_main.xml" value="0.2477355072463768" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/activity_menu.xml" value="0.2477355072463768" />
@@ -15,7 +16,9 @@
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/fragment_edit_profile.xml" value="0.23641304347826086" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/fragment_friends.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/fragment_profile.xml" value="0.1921875" />
+        <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/layout/list_item.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/menu/edit_profile_menu.xml" value="0.2557291666666667" />
         <entry key="..\:/Users/vince/Desktop/AndroidStudio/LiveChat/app/src/main/res/menu/toolbar.xml" value="0.2557291666666667" />
       </map>
     </option>

@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         when(v){
-            register_text -> startActivity(Intent(this, registerActivity::class.java))
+            register_text -> startActivity(Intent(this, RegisterActivity::class.java))
             login_btn -> login()
         }
     }

@@ -46,12 +46,13 @@ class ProfileFragment : Fragment() {
         }
 
         view.edit_btn.setOnClickListener{
-            val dialog = Dialog(requireActivity(),R.style.Theme_LiveChat)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.fragment_edit_profile)
-            dialog.show()
-            val window = dialog.window
-            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+//            val dialog = Dialog(requireActivity(),R.style.Theme_LiveChat)
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//            dialog.setContentView(R.layout.activity_edit_profile)
+//            dialog.show()
+//            val window = dialog.window
+//            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+            startActivity(Intent(activity,EditProfileActivity::class.java))
         }
 
         load()

@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfileFragment"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/edit_profile_toolbar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/editprofile_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="編輯個人檔案"
@@ -18,52 +17,55 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="300dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_marginTop="70dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editprofile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="暱稱"/>
+                android:hint="暱稱" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldSex"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_marginTop="10dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/editprofile_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="性別"/>
+                android:focusable="false"
+                android:inputType="none|textNoSuggestions"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldBirthday"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editprofile_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="生日"/>
+                android:hint="生日"
+                android:inputType="date"
+                android:onClick="datepicker"
+                android:focusableInTouchMode="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
-class registerActivity : AppCompatActivity(), View.OnClickListener{
+class RegisterActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var auth : FirebaseAuth
     var databaseReference : DatabaseReference? = null

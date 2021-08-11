@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LiveChat">
         <activity
-            android:name=".ProfileActivity"
-            android:exported="true" />
-        <activity
             android:name=".MenuActivity"
             android:exported="true">
             <intent-filter>
@@ -21,8 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".EditProfileActivity"/>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".registerActivity" />
+        <activity android:name=".RegisterActivity" />
     </application>
 
 </manifest>
