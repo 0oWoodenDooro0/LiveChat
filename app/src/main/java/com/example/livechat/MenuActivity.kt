@@ -1,15 +1,12 @@
 package com.example.livechat
 
-import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_menu.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 import user
 
 class MenuActivity : AppCompatActivity(){
@@ -47,7 +44,9 @@ class MenuActivity : AppCompatActivity(){
 
     private fun check(){
         val currentUser = auth.currentUser
+
         if(currentUser == null){
+
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
