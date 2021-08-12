@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import user
 
 /**
  * A simple [Fragment] subclass.
@@ -21,15 +22,11 @@ import kotlinx.android.synthetic.main.fragment_profile.view.*
 class ProfileFragment : Fragment() {
 
     private lateinit var auth : FirebaseAuth
-    var databaseReference : DatabaseReference? = null
-    private var database : FirebaseDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("profile")
 
     }
 
@@ -46,49 +43,23 @@ class ProfileFragment : Fragment() {
         }
 
         view.edit_btn.setOnClickListener{
-//            val dialog = Dialog(requireActivity(),R.style.Theme_LiveChat)
-//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//            dialog.setContentView(R.layout.activity_edit_profile)
-//            dialog.show()
-//            val window = dialog.window
-//            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
             startActivity(Intent(activity,EditProfileActivity::class.java))
         }
 
-        load()
+        view?.textview_name?.text = "暱稱: " + user.name
+        if(user.sex == "null"){
+            view?.textview_sex?.text = "性別: 未公開"
+        }
+        else{
+            view?.textview_sex?.text = "性別: " + user.sex
+        }
+        if(user.birthday == "null"){
+            view?.textview_birthday?.text = "生日: 未公開"
+        }
+        else{
+            view?.textview_birthday?.text = "生日: " + user.birthday
+        }
         return view
-    }
-
-    private fun load(){
-        val user = auth.currentUser
-        val userreference = databaseReference?.child(user?.uid!!)
-
-        userreference?.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var name = snapshot.child("Name").value.toString()
-                var sex = snapshot.child("Sex").value
-                var birthday = snapshot.child("Birthday").value
-
-                view?.textview_name?.text = "暱稱: " + name
-                if(sex == null){
-                    view?.textview_sex?.text = "性別: 未公開"
-                }
-                else{
-                    view?.textview_sex?.text = "性別: " + sex.toString()
-                }
-                if(birthday == null){
-                    view?.textview_birthday?.text = "生日: 未公開"
-                }
-                else{
-                    view?.textview_birthday?.text = "生日: " + birthday.toString()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
     }
 
 }
