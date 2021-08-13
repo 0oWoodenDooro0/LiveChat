@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FriendsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FriendsFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var auth : FirebaseAuth
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        auth = FirebaseAuth.getInstance()
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -23,7 +23,10 @@ class FriendsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends, container, false)
+
+        val view: View = inflater!!.inflate(R.layout.fragment_friends, container, false)
+
+        return view
     }
 
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment"
     android:gravity="center_horizontal|bottom"
     android:orientation="vertical">
@@ -12,29 +13,48 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="10dp">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="76dp">
+
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="75dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
+
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
         <TextView
             android:id="@+id/textview_name"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/textview_sex"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/textview_birthday"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 

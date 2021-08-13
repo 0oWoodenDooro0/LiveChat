@@ -17,15 +17,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="75dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/editprofile_image"/>
+
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editprofile_name"
