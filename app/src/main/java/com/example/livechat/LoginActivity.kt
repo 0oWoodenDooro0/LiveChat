@@ -7,8 +7,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
 import user
 
@@ -63,13 +62,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
                 Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, MenuActivity::class.java))
-                finish()
+                check()
             }
             else{
                 Toast.makeText(this, "登入失敗，再試一次", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    fun check(){
+        val currentUser = auth.currentUser
+        val currentUserDb =  databaseReference?.child(currentUser?.uid!!)
+        user.uid = currentUser!!.uid
+        currentUserDb?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user.email = snapshot.child("Email").value.toString()
+                user.name = snapshot.child("Name").value.toString()
+                user.sex = snapshot.child("Sex").value.toString()
+                user.birthday = snapshot.child("Birthday").value.toString()
+                startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
+                finish()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
 }

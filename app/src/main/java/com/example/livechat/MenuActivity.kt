@@ -18,7 +18,6 @@ class MenuActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
@@ -39,32 +38,5 @@ class MenuActivity : AppCompatActivity(){
                 else -> false
             }
         }
-        check()
     }
-
-    private fun check(){
-        val currentUser = auth.currentUser
-
-        if(currentUser == null){
-
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-        else{
-            val currentUserDb =  databaseReference?.child(currentUser?.uid!!)
-            user.uid = currentUser?.uid
-            currentUserDb?.addValueEventListener(object :ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    user.email = snapshot.child("Email").value.toString()
-                    user.name = snapshot.child("Name").value.toString()
-                    user.sex = snapshot.child("Sex").value.toString()
-                    user.birthday = snapshot.child("Birthday").value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
-        }
-    }
-
 }
