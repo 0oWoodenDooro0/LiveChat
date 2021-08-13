@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import user
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,7 +16,8 @@ class EditProfileActivity : AppCompatActivity(){
 
     private lateinit var auth : FirebaseAuth
     var databaseReference : DatabaseReference? = null
-    private var database : FirebaseDatabase? = null
+    private var storage : FirebaseStorage? = null
+    private var firebase : FirebaseDatabase? = null
     private val dateformat = SimpleDateFormat("YYYY/MM/dd", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +25,8 @@ class EditProfileActivity : AppCompatActivity(){
         setContentView(R.layout.activity_edit_profile)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("profile")
+        firebase = FirebaseDatabase.getInstance()
+        databaseReference = firebase?.reference!!.child("profile")
 
         load()
 
@@ -89,12 +90,12 @@ class EditProfileActivity : AppCompatActivity(){
     }
 
     private fun check(){
-        val currentUser = auth.currentUser
-        val currentUserDb =  databaseReference?.child(currentUser?.uid!!)
+        val currentuser = auth.currentUser
+        val database =  databaseReference?.child(currentuser?.uid!!)
 
-        currentUserDb?.child("Name")?.setValue(editprofile_name.text.toString())
-        currentUserDb?.child("Sex")?.setValue(editprofile_sex.text.toString())
-        currentUserDb?.child("Birthday")?.setValue(editprofile_birthday.text.toString())
+        database?.child("Name")?.setValue(editprofile_name.text.toString())
+        database?.child("Sex")?.setValue(editprofile_sex.text.toString())
+        database?.child("Birthday")?.setValue(editprofile_birthday.text.toString())
     }
 
 }

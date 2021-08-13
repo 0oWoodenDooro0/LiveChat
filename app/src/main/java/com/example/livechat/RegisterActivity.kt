@@ -14,15 +14,15 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var auth : FirebaseAuth
     var databaseReference : DatabaseReference? = null
-    private var database : FirebaseDatabase? = null
+    private var firebase : FirebaseDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("profile")
+        firebase = FirebaseDatabase.getInstance()
+        databaseReference = firebase?.reference!!.child("profile")
 
 
         register_btn.setOnClickListener(this)
@@ -71,10 +71,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener{
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
-                val currentUser = auth.currentUser
-                val currentUserDb =  databaseReference?.child(currentUser?.uid!!)
-                currentUserDb?.child("Name")?.setValue(name)
-                currentUserDb?.child("Email")?.setValue(email)
+                val currentuser = auth.currentUser
+                val database =  databaseReference?.child(currentuser?.uid!!)
+                database?.child("Name")?.setValue(name)
+                database?.child("Email")?.setValue(email)
 
                 Toast.makeText(this, "註冊成功", Toast.LENGTH_LONG).show()
                 finish()

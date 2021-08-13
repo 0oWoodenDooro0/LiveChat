@@ -5,4 +5,5 @@ class User{
     var name:String = ""
     var sex:String = ""
     var birthday:String = ""
+    var imageurl = ""
 }

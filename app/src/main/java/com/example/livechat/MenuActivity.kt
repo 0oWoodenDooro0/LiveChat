@@ -10,15 +10,15 @@ class MenuActivity : AppCompatActivity(){
 
     private lateinit var auth : FirebaseAuth
     var databaseReference : DatabaseReference? = null
-    private var database : FirebaseDatabase? = null
+    private var firebase : FirebaseDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("profile")
+        firebase = FirebaseDatabase.getInstance()
+        databaseReference = firebase?.reference!!.child("profile")
 
         supportFragmentManager.beginTransaction().replace(R.id.layout, FriendsFragment()).commit()
 
