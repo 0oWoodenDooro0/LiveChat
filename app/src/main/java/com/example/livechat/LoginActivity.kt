@@ -80,7 +80,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
                 user.name = snapshot.child("Name").value.toString()
                 user.sex = snapshot.child("Sex").value.toString()
                 user.birthday = snapshot.child("Birthday").value.toString()
-                user.imageurl = snapshot.child("Imageurl").value.toString()
                 startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
                 finish()
             }

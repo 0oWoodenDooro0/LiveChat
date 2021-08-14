@@ -6,24 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import user
 
 class ProfileFragment : Fragment() {
 
     private lateinit var auth : FirebaseAuth
+    private var storage : StorageReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         auth = FirebaseAuth.getInstance()
+        storage = FirebaseStorage.getInstance().getReference().child("profile")
 
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
 
         val view: View = inflater!!.inflate(R.layout.fragment_profile, container, false)
 
@@ -49,6 +55,24 @@ class ProfileFragment : Fragment() {
         }
         else{
             view?.textview_birthday?.text = "生日: " + user.birthday
+        }
+        if(user.imageurl != null){
+//            storage?.child(user.imageurl)?.downloadUrl?.addOnSuccessListener {
+//                Picasso.get()
+//                    .load(it)
+//                    .resize(2000, 2000)
+//                    .onlyScaleDown()
+//                    .centerCrop()
+//                    .into(image)
+//            }?.addOnFailureListener{
+//                Toast.makeText(activity, "讀取失敗", Toast.LENGTH_SHORT).show()
+//            }
+//            Picasso.get()
+//                    .load(user.imageurl)
+//                    .resize(2000, 2000)
+//                    .onlyScaleDown()
+//                    .centerCrop()
+//                    .into(image)
         }
         return view
     }

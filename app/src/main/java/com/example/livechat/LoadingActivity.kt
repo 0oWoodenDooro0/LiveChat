@@ -3,9 +3,12 @@ package com.example.livechat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import user
 
 class LoadingActivity : AppCompatActivity() {
@@ -13,6 +16,7 @@ class LoadingActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     var databaseReference : DatabaseReference? = null
     private var database : FirebaseDatabase? = null
+    private var storage : StorageReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +26,7 @@ class LoadingActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("profile")
+        storage = FirebaseStorage.getInstance().getReference().child("profile")
 
         check()
     }
@@ -43,6 +48,12 @@ class LoadingActivity : AppCompatActivity() {
                     user.name = snapshot.child("Name").value.toString()
                     user.sex = snapshot.child("Sex").value.toString()
                     user.birthday = snapshot.child("Birthday").value.toString()
+//                    storage?.child(user.uid + ".png")?.downloadUrl?.addOnSuccessListener {
+//                        user.imageurl = it
+//                        Toast.makeText(this@LoadingActivity, "success", Toast.LENGTH_SHORT).show()
+//                    }?.addOnFailureListener{
+//                        Toast.makeText(this@LoadingActivity, "讀取失敗", Toast.LENGTH_SHORT).show()
+//                    }
                     startActivity(Intent(this@LoadingActivity, MenuActivity::class.java))
                     finish()
                 }
