@@ -1,4 +1,3 @@
-import android.net.Uri
 
 public var user = User()
 class User{
@@ -7,5 +6,5 @@ class User{
     var name:String = ""
     var sex:String = ""
     var birthday:String = ""
-    var imageurl:Uri? = null
+    var imageurl:String = ""
 }

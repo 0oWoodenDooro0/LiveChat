@@ -3,6 +3,7 @@ package com.example.livechat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
@@ -14,8 +15,7 @@ import user
 class LoadingActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
-    var databaseReference : DatabaseReference? = null
-    private var database : FirebaseDatabase? = null
+    var database : DatabaseReference? = null
     private var storage : StorageReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +24,7 @@ class LoadingActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("profile")
+        database = FirebaseDatabase.getInstance().getReference().child("profile")
         storage = FirebaseStorage.getInstance().getReference().child("profile")
 
         check()
@@ -40,20 +39,15 @@ class LoadingActivity : AppCompatActivity() {
             finish()
         }
         else{
-            val currentUserDb =  databaseReference?.child(currentUser?.uid!!)
+            val currentUserDb =  database?.child(currentUser?.uid!!)
             user.uid = currentUser?.uid
             currentUserDb?.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    user.email = snapshot.child("Email").value.toString()
-                    user.name = snapshot.child("Name").value.toString()
-                    user.sex = snapshot.child("Sex").value.toString()
-                    user.birthday = snapshot.child("Birthday").value.toString()
-//                    storage?.child(user.uid + ".png")?.downloadUrl?.addOnSuccessListener {
-//                        user.imageurl = it
-//                        Toast.makeText(this@LoadingActivity, "success", Toast.LENGTH_SHORT).show()
-//                    }?.addOnFailureListener{
-//                        Toast.makeText(this@LoadingActivity, "讀取失敗", Toast.LENGTH_SHORT).show()
-//                    }
+                    user.email = snapshot.child("email").value.toString()
+                    user.name = snapshot.child("name").value.toString()
+                    user.sex = snapshot.child("sex").value.toString()
+                    user.birthday = snapshot.child("birthday").value.toString()
+                    user.imageurl = snapshot.child("imageurl").value.toString()
                     startActivity(Intent(this@LoadingActivity, MenuActivity::class.java))
                     finish()
                 }

@@ -13,16 +13,14 @@ import kotlinx.android.synthetic.main.activity_register.*
 class RegisterActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var auth : FirebaseAuth
-    var databaseReference : DatabaseReference? = null
-    private var firebase : FirebaseDatabase? = null
+    var database : DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         auth = FirebaseAuth.getInstance()
-        firebase = FirebaseDatabase.getInstance()
-        databaseReference = firebase?.reference!!.child("profile")
+        database = FirebaseDatabase.getInstance().getReference().child("profile")
 
 
         register_btn.setOnClickListener(this)
@@ -72,9 +70,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener{
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
                 val currentuser = auth.currentUser
-                val database =  databaseReference?.child(currentuser?.uid!!)
-                database?.child("Name")?.setValue(name)
-                database?.child("Email")?.setValue(email)
+                val data =  database?.child(currentuser?.uid!!)
+                data?.child("Name")?.setValue(name)
+                data?.child("Email")?.setValue(email)
 
                 Toast.makeText(this, "註冊成功", Toast.LENGTH_LONG).show()
                 finish()

@@ -14,16 +14,14 @@ import user
 class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var auth : FirebaseAuth
-    var databaseReference : DatabaseReference? = null
-    private var firebase : FirebaseDatabase? = null
+    var database : DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-        firebase = FirebaseDatabase.getInstance()
-        databaseReference = firebase?.reference!!.child("profile")
+        database = FirebaseDatabase.getInstance().getReference().child("profile")
 
         register_text.setOnClickListener(this)
         login_btn.setOnClickListener(this)
@@ -72,14 +70,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
     fun check(){
         val currentUser = auth.currentUser
-        val database =  databaseReference?.child(currentUser?.uid!!)
+        val data =  database?.child(currentUser?.uid!!)
         user.uid = currentUser!!.uid
-        database?.addValueEventListener(object : ValueEventListener {
+        data?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                user.email = snapshot.child("Email").value.toString()
-                user.name = snapshot.child("Name").value.toString()
-                user.sex = snapshot.child("Sex").value.toString()
-                user.birthday = snapshot.child("Birthday").value.toString()
+                user.email = snapshot.child("email").value.toString()
+                user.name = snapshot.child("name").value.toString()
+                user.sex = snapshot.child("sex").value.toString()
+                user.birthday = snapshot.child("birthday").value.toString()
                 startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
                 finish()
             }

@@ -24,17 +24,19 @@ import java.util.*
 class EditProfileActivity : AppCompatActivity(){
 
     private lateinit var auth : FirebaseAuth
-    var databaseReference : DatabaseReference? = null
+    var database : DatabaseReference? = null
     private var storage : StorageReference? = null
-    private var firebase : FirebaseDatabase? = null
     private val dateformat = SimpleDateFormat("YYYY/MM/dd", Locale.getDefault())
     var image_pick = registerForActivityResult(ActivityResultContracts.GetContent()){
-        Picasso.get().load(it)
-            .resize(1024, 1024)
-            .onlyScaleDown()
-            .centerCrop()
-            .into(editprofile_image)
-        imageuri = it
+        if(it != null){
+            Picasso.get().load(it)
+                .resize(1024, 1024)
+                .onlyScaleDown()
+                .centerCrop()
+                .into(editprofile_image)
+            imageuri = it
+        }
+
     }
     var permission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
         if(it){
@@ -50,8 +52,7 @@ class EditProfileActivity : AppCompatActivity(){
         setContentView(R.layout.activity_edit_profile)
 
         auth = FirebaseAuth.getInstance()
-        firebase = FirebaseDatabase.getInstance()
-        databaseReference = firebase?.reference!!.child("profile")
+        database = FirebaseDatabase.getInstance().getReference().child("profile")
         storage = FirebaseStorage.getInstance().getReference().child("profile")
 
         load()
@@ -77,7 +78,7 @@ class EditProfileActivity : AppCompatActivity(){
         editprofile_toolbar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.check ->{
-                    check()
+                    checkImage()
                     true
                 }
                 else ->false
@@ -115,47 +116,40 @@ class EditProfileActivity : AppCompatActivity(){
         }
 
         if(user.imageurl != null){
-//            storage?.child(user.imageurl)?.downloadUrl?.addOnSuccessListener {
-//                Picasso.get()
-//                    .load(it)
-//                    .resize(2000, 2000)
-//                    .onlyScaleDown()
-//                    .centerCrop()
-//                    .into(editprofile_image)
-//            }?.addOnFailureListener{
-//                Toast.makeText(this, "讀取失敗", Toast.LENGTH_SHORT).show()
-//            }
-//            Picasso.get()
-//                    .load(user.imageurl)
-//                    .resize(2000, 2000)
-//                    .onlyScaleDown()
-//                    .centerCrop()
-//                    .into(editprofile_image)
+            Picasso.get()
+                    .load(user.imageurl)
+                    .resize(2000, 2000)
+                    .onlyScaleDown()
+                    .centerCrop()
+                    .into(editprofile_image)
         }
     }
 
-    private fun check(){
-        val currentuser = auth.currentUser
-        val database =  databaseReference?.child(currentuser?.uid!!)
-
-        database?.child("Name")?.setValue(editprofile_name.text.toString())
-        database?.child("Sex")?.setValue(editprofile_sex.text.toString())
-        database?.child("Birthday")?.setValue(editprofile_birthday.text.toString())
+    private fun checkImage(){
         if(imageuri != null){
             var image = storage?.child(user.uid + ".png")
             image?.putFile(imageuri!!)?.addOnSuccessListener {
-                Toast.makeText(this, "成功" ,Toast.LENGTH_SHORT).show()
-                finish()
+                image.downloadUrl.addOnSuccessListener {
+                    user.imageurl = it.toString()
+                    Upload()
+                }
             }?.addOnFailureListener {
                 Toast.makeText(this, "上傳失敗", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            storage?.child(user.uid + ".png")?.downloadUrl?.addOnSuccessListener {
-//                user.imageurl = it
-//                user.imageurl = user.uid + ".png"
             }
         }
 
+    }
+
+    private fun Upload(){
+        val currentuser = auth.currentUser
+        val data =  database?.child(currentuser?.uid!!)
+        data?.setValue(user)?.addOnSuccessListener {
+            Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show()
+            finish()
+        }?.addOnFailureListener {
+            Toast.makeText(this, "上船失敗" ,Toast.LENGTH_SHORT).show()
+            finish()
+        }
     }
 
     private fun PickImage(){
