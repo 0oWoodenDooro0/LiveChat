@@ -3,7 +3,6 @@ package com.example.livechat
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -93,7 +92,7 @@ class EditProfileActivity : AppCompatActivity(){
     private fun load(){
 
         val items = listOf("男","女")
-        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+        val adapter = ArrayAdapter(this, R.layout.edit_profile_list_item, items)
         editprofile_sex.setAdapter(adapter)
 
         var sex = ""
