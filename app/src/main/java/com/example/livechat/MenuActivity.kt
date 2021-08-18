@@ -8,15 +8,9 @@ import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : AppCompatActivity(){
 
-    private lateinit var auth : FirebaseAuth
-    var database : DatabaseReference? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().getReference().child("profile")
 
         supportFragmentManager.beginTransaction().replace(R.id.layout, FriendsFragment()).commit()
 

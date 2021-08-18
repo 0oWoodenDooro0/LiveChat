@@ -13,7 +13,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-import user
 
 class ProfileFragment : Fragment() {
 
@@ -45,25 +44,25 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(activity,EditProfileActivity::class.java))
         }
 
-        database?.child(user.uid)?.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                user.name = snapshot.child("name").value.toString()
-                user.sex = snapshot.child("sex").value.toString()
-                user.birthday = snapshot.child("birthday").value.toString()
-                user.imageurl = snapshot.child("imageurl").value.toString()
-                load(view.image)
-            }
+//        database?.child(user.uid)?.addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                user.name = snapshot.child("name").value.toString()
+//                user.sex = snapshot.child("sex").value.toString()
+//                user.birthday = snapshot.child("birthday").value.toString()
+//                user.imageurl = snapshot.child("imageurl").value.toString()
+//                load(view.image)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//            }
+//        })
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
-        load(view.image)
+        load(view)
 
         return view
     }
 
-    private fun load(iv : ImageView){
+    private fun load(view: View){
         view?.textview_name?.text = "暱稱: " + user.name
         if(user.sex == "null"){
             view?.textview_sex?.text = "性別: 未公開"
@@ -83,7 +82,7 @@ class ProfileFragment : Fragment() {
                 .resize(2000, 2000)
                 .onlyScaleDown()
                 .centerCrop()
-                .into(iv)
+                .into(view.image)
         }
     }
 

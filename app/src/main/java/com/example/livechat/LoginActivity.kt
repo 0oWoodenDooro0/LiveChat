@@ -9,7 +9,6 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
-import user
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener{
 

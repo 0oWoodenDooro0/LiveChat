@@ -15,7 +15,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import user
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -1,5 +1,9 @@
+package com.example.livechat
 
-public var user = User()
+data class Item(val name:String = "",
+                val imageurl:String = "")
+
+var user = User()
 class User{
     var uid:String = ""
     var email:String = ""
