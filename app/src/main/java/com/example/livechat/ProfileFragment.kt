@@ -64,19 +64,19 @@ class ProfileFragment : Fragment() {
 
     private fun load(view: View){
         view?.textview_name?.text = "暱稱: " + user.name
-        if(user.sex == "null"){
+        if(user.sex == ""){
             view?.textview_sex?.text = "性別: 未公開"
         }
         else{
             view?.textview_sex?.text = "性別: " + user.sex
         }
-        if(user.birthday == "null"){
+        if(user.birthday == ""){
             view?.textview_birthday?.text = "生日: 未公開"
         }
         else{
             view?.textview_birthday?.text = "生日: " + user.birthday
         }
-        if(user.imageurl != "null"){
+        if(user.imageurl != ""){
             Picasso.get()
                 .load(user.imageurl)
                 .resize(2000, 2000)

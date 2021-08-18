@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener{
@@ -77,6 +78,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
                 user.name = snapshot.child("name").value.toString()
                 user.sex = snapshot.child("sex").value.toString()
                 user.birthday = snapshot.child("birthday").value.toString()
+                user.imageurl = snapshot.child("imageurl").value.toString()
                 startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
                 finish()
             }

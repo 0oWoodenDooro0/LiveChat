@@ -43,7 +43,6 @@ class FriendsFragment : Fragment() {
 
                     }
                 }
-                Log.d("fds",itemlist.toString())
                 createitem(itemlist, view.context)
             }
 

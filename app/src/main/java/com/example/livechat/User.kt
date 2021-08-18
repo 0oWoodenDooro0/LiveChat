@@ -1,7 +1,7 @@
 package com.example.livechat
 
-data class Item(val name:String = "",
-                val imageurl:String = "")
+data class Item(var name:String = "",
+                var imageurl:String = "")
 
 var user = User()
 class User{

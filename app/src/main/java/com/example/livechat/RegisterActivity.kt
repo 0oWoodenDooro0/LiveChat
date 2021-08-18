@@ -71,8 +71,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener{
             if(it.isSuccessful){
                 val currentuser = auth.currentUser
                 val data =  database?.child(currentuser?.uid!!)
-                data?.child("Name")?.setValue(name)
-                data?.child("Email")?.setValue(email)
+                data?.child("uid")?.setValue(currentuser?.uid!!)
+                data?.child("name")?.setValue(name)
+                data?.child("email")?.setValue(email)
+                data?.child("sex")?.setValue("")
+                data?.child("birthday")?.setValue("")
+                data?.child("imageurl")?.setValue("")
 
                 Toast.makeText(this, "註冊成功", Toast.LENGTH_LONG).show()
                 finish()

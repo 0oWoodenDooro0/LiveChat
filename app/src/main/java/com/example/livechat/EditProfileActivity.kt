@@ -98,17 +98,17 @@ class EditProfileActivity : AppCompatActivity(){
         var birthday = ""
         var name = ""
 
-        if(user.name != "null"){
+        if(user.name != ""){
             name = user.name
             editprofile_name.setText(name)
         }
 
-        if(user.sex != "null"){
+        if(user.sex != ""){
             sex = user.sex
             editprofile_sex.setText(sex, false)
         }
 
-        if(user.birthday != "null"){
+        if(user.birthday != ""){
             birthday = user.birthday
             editprofile_birthday.setText(birthday)
         }
